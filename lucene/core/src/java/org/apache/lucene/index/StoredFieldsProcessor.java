@@ -28,6 +28,9 @@ import org.apache.lucene.util.IOUtils;
 import org.apache.lucene.util.RamUsageEstimator;
 
 /** This is a StoredFieldsConsumer that writes stored fields. */
+/**
+ * 猜测是负责写fnm, fdt, fdx 信息
+ */
 final class StoredFieldsProcessor extends StoredFieldsConsumer {
 
   StoredFieldsWriter fieldsWriter;
@@ -133,6 +136,9 @@ final class StoredFieldsProcessor extends StoredFieldsConsumer {
     assert docWriter.testPoint("StoredFieldsWriter.finishDocument end");
   }
 
+  /**
+   * 添加域的存储过程代码
+   */
   @Override
   public void addField(int docID, IndexableField field, FieldInfo fieldInfo) {
     if (field.fieldType().stored()) {

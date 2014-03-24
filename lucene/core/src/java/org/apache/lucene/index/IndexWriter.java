@@ -1167,6 +1167,12 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
    * @throws CorruptIndexException if the index is corrupt
    * @throws IOException if there is a low-level IO error
    */
+  /**
+   * writer.addDocument(doc);
+   * -->IndexWriter.addDocument(Document doc, Analyzer analyzer)
+   * -->doFlush = docWriter.addDocument(doc, analyzer);
+   * --> DocumentsWriter.updateDocument(Document, Analyzer, Term)
+   */
   public void addDocument(Iterable<? extends IndexableField> doc) throws IOException {
     addDocument(doc, analyzer);
   }
@@ -1185,6 +1191,12 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
    *
    * @throws CorruptIndexException if the index is corrupt
    * @throws IOException if there is a low-level IO error
+   */
+  /**
+   * writer.addDocument(doc);
+   * -->IndexWriter.addDocument(Document doc, Analyzer analyzer)
+   * -->doFlush = docWriter.addDocument(doc, analyzer);
+   * --> DocumentsWriter.updateDocument(Document, Analyzer, Term)
    */
   public void addDocument(Iterable<? extends IndexableField> doc, Analyzer analyzer) throws IOException {
     updateDocument(null, doc, analyzer);
@@ -1231,6 +1243,12 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
    *
    * @lucene.experimental
    */
+  /**
+   * writer.addDocument(doc);
+   * -->IndexWriter.addDocument(Document doc, Analyzer analyzer)
+   * -->doFlush = docWriter.addDocument(doc, analyzer);
+   * --> DocumentsWriter.updateDocument(Document, Analyzer, Term)
+   */
   public void addDocuments(Iterable<? extends Iterable<? extends IndexableField>> docs) throws IOException {
     addDocuments(docs, analyzer);
   }
@@ -1245,6 +1263,12 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
    * @throws IOException if there is a low-level IO error
    *
    * @lucene.experimental
+   */
+  /**
+   * writer.addDocument(doc);
+   * -->IndexWriter.addDocument(Document doc, Analyzer analyzer)
+   * -->doFlush = docWriter.addDocument(doc, analyzer);
+   * --> DocumentsWriter.updateDocument(Document, Analyzer, Term)
    */
   public void addDocuments(Iterable<? extends Iterable<? extends IndexableField>> docs, Analyzer analyzer) throws IOException {
     updateDocuments(null, docs, analyzer);
@@ -3046,6 +3070,12 @@ public class IndexWriter implements Closeable, TwoPhaseCommit{
     }
   }
 
+  /**
+   * writer.addDocument(doc);
+   * -->IndexWriter.addDocument(Document doc, Analyzer analyzer)
+   * -->doFlush = docWriter.addDocument(doc, analyzer);
+   * --> DocumentsWriter.updateDocument(Document, Analyzer, Term)
+   */
   private boolean doFlush(boolean applyAllDeletes) throws IOException {
     if (hitOOM) {
       throw new IllegalStateException("this writer hit an OutOfMemoryError; cannot flush");

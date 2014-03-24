@@ -26,6 +26,9 @@ import org.apache.lucene.util.ByteBlockPool;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.RamUsageEstimator;
 
+/**
+ * 负责每个线程的tvx，tvd，tvf 信息处理
+ */
 final class TermVectorsConsumerPerField extends TermsHashConsumerPerField {
 
   final TermsHashPerField termsHashPerField;

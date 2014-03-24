@@ -174,8 +174,8 @@ public final class Lucene40StoredFieldsWriter extends StoredFieldsWriter {
     fieldsStream.writeByte((byte) bits);
 
     if (bytes != null) {
-      fieldsStream.writeVInt(bytes.length);
-      fieldsStream.writeBytes(bytes.bytes, bytes.offset, bytes.length);
+      fieldsStream.writeVInt(bytes.length);//写长度
+      fieldsStream.writeBytes(bytes.bytes, bytes.offset, bytes.length);//写二进制内容
     } else if (string != null) {
       fieldsStream.writeString(field.stringValue());
     } else {

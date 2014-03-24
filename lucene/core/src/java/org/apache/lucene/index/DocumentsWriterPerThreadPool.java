@@ -283,11 +283,17 @@ abstract class DocumentsWriterPerThreadPool implements Cloneable {
    * waiting to acquire its lock or <code>null</code> if no {@link ThreadState}
    * is yet visible to the calling thread.
    */
+  /**
+   * 
+   */
   ThreadState minContendedThreadState() {
     ThreadState minThreadState = null;
+    //获取当前线程数
     final int limit = numThreadStatesActive;
     for (int i = 0; i < limit; i++) {
+      //遍历当前线程
       final ThreadState state = threadStates[i];
+      
       if (minThreadState == null || state.getQueueLength() < minThreadState.getQueueLength()) {
         minThreadState = state;
       }

@@ -50,7 +50,9 @@ import java.io.IOException;
  *
  * @see LockFactory
  */
-
+/**
+ * 有关SimpleFSLock 进行JVM 之间的同步
+ */
 public class SimpleFSLockFactory extends FSLockFactory {
 
   /**

@@ -32,7 +32,7 @@ import org.apache.lucene.util.BytesRefHash.MaxBytesLengthExceededException;
 final class TermsHashPerField extends InvertedDocConsumerPerField {
   private static final int HASH_INIT_SIZE = 4;
 
-  final TermsHashConsumerPerField consumer;
+  final TermsHashConsumerPerField consumer;//类型为FreqProxTermsWriterPerField，用于写freq,prox 信息到缓存中。
 
   final TermsHash termsHash;
 
@@ -43,9 +43,9 @@ final class TermsHashPerField extends InvertedDocConsumerPerField {
   BytesRef termBytesRef;
 
   // Copied from our perThread
-  final IntBlockPool intPool;
-  final ByteBlockPool bytePool;
-  final ByteBlockPool termBytePool;
+  final IntBlockPool intPool;//用于存储分别指向每个Token 在bytePool 中freq 和prox 信息的偏移量。如果不足时，从DocumentsWriter 的freeIntBlocks 分配
+  final ByteBlockPool bytePool;//用于存储freq, prox 信息，如果不足时，从DocumentsWriter 中的freeByteBlocks 分配
+  final ByteBlockPool termBytePool;//用于存储Token 的文本信息，如果不足时，从DocumentsWriter中的freeCharBlocks 分配
 
   final int streamCount;
   final int numPostingInt;
@@ -54,6 +54,12 @@ final class TermsHashPerField extends InvertedDocConsumerPerField {
 
   final BytesRefHash bytesHash;
 
+  /**
+   * 存储倒排表，每一
+    个Term 都有一个RawPostingList (PostingList)，其中包含了int textStart，也即文本在
+    charPool 中的偏移量，int byteStart，即此Term 的freq 和prox 信息在bytePool 中的起始
+    偏移量，int intStart，即此term 的在intPool 中的起始偏移量。
+   */
   ParallelPostingsArray postingsArray;
   private final Counter bytesUsed;
 

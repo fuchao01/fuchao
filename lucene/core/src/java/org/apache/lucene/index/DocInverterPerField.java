@@ -59,13 +59,16 @@ final class DocInverterPerField extends DocFieldConsumerPerField {
     }
   }
 
+  /**
+   * 域索引链的源头
+   */
   @Override
   public void processFields(final IndexableField[] fields,
                             final int count) throws IOException {
 
     fieldState.reset();
 
-    final boolean doInvert = consumer.start(fields, count);
+    final boolean doInvert = consumer.start(fields, count);//是否需要倒排
 
     for(int i=0;i<count;i++) {
 

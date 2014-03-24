@@ -201,6 +201,9 @@ final class DocFieldProcessor extends DocConsumer {
         // easily add it
         FieldInfo fi = fieldInfos.addOrUpdate(fieldName, field.fieldType());
 
+        /**
+         * 线索引链
+         */
         fp = new DocFieldProcessorPerField(this, fi);
         fp.next = fieldHash[hashPos];
         fieldHash[hashPos] = fp;

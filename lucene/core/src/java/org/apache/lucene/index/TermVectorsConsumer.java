@@ -29,6 +29,9 @@ import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.IOUtils;
 import org.apache.lucene.util.RamUsageEstimator;
 
+/**
+ * 负责写tvx, tvd, tvf 信息
+ */
 final class TermVectorsConsumer extends TermsHashConsumer {
 
   TermVectorsWriter writer;

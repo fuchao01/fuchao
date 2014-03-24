@@ -31,6 +31,9 @@ import java.io.IOException;
  *
  * @see Directory#makeLock(String)
  */
+/**
+ * 有关SimpleFSLock 进行JVM 之间的同步
+ */
 public abstract class Lock {
 
   /** How long {@link #obtain(long)} waits, in milliseconds,

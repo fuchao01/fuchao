@@ -32,7 +32,9 @@ import java.io.IOException;
  * @see LockStressTest
  * @see VerifyingLockFactory
  */
-
+/**
+ * 有关SimpleFSLock 进行JVM 之间的同步
+ */
 public abstract class LockFactory {
 
   protected String lockPrefix = null;

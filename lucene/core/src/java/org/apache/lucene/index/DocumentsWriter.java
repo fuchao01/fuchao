@@ -108,7 +108,7 @@ final class DocumentsWriter {
 
   private final LiveIndexWriterConfig config;
 
-  private final AtomicInteger numDocsInRAM = new AtomicInteger(0);
+  private final AtomicInteger numDocsInRAM = new AtomicInteger(0);//记录docId
 
   // TODO: cut over to BytesRefHash in BufferedDeletes
   volatile DocumentsWriterDeleteQueue deleteQueue = new DocumentsWriterDeleteQueue();
@@ -412,6 +412,9 @@ final class DocumentsWriter {
       final DocumentsWriterPerThread dwpt = perThread.dwpt;
       final int dwptNumDocs = dwpt.getNumDocsInRAM();
       try {
+        /**
+         * 将文档加入DocumentsWriter
+         */
         final int docCount = dwpt.updateDocuments(docs, analyzer, delTerm);
         numDocsInRAM.addAndGet(docCount);
       } finally {
@@ -432,6 +435,9 @@ final class DocumentsWriter {
     return postUpdate(flushingDWPT, hasEvents);
   }
 
+  /**
+   * 
+   */
   boolean updateDocument(final Iterable<? extends IndexableField> doc, final Analyzer analyzer,
       final Term delTerm) throws IOException {
 

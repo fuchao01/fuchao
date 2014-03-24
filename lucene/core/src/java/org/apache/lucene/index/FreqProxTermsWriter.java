@@ -27,6 +27,9 @@ import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.CollectionUtil;
 import org.apache.lucene.util.IOUtils;
 
+/**
+ * 负责freq,prox
+ */
 final class FreqProxTermsWriter extends TermsHashConsumer {
 
   @Override
@@ -64,10 +67,11 @@ final class FreqProxTermsWriter extends TermsHashConsumer {
       TermsHash termsHash = null;
       
       /*
+     这个链的实现怎么不存在？？？？？？？
     Current writer chain:
       FieldsConsumer
         -> IMPL: FormatPostingsTermsDictWriter
-          -> TermsConsumer
+          -> TermsConsumer 
             -> IMPL: FormatPostingsTermsDictWriter.TermsWriter
               -> DocsConsumer
                 -> IMPL: FormatPostingsDocsWriter

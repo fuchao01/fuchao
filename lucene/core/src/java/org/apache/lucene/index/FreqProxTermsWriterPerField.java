@@ -35,6 +35,9 @@ import org.apache.lucene.util.RamUsageEstimator;
 // TODO: break into separate freq and prox writers as
 // codecs; make separate container (tii/tis/skip/*) that can
 // be configured as any number of files 1..N
+/**
+ * 负责每个线程的freq，prox 信息处理
+ */
 final class FreqProxTermsWriterPerField extends TermsHashConsumerPerField implements Comparable<FreqProxTermsWriterPerField> {
 
   final FreqProxTermsWriter parent;

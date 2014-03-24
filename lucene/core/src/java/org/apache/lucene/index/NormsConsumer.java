@@ -31,7 +31,9 @@ import org.apache.lucene.util.IOUtils;
  *  for the doc/fields it saw, then the flush method below
  *  merges all of these together into a single _X.nrm file.
  */
-
+/**
+ * 负责写nrm 信息
+ */
 final class NormsConsumer extends InvertedDocEndConsumer {
 
   @Override
